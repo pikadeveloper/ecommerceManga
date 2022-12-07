@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html, body{
+    background: url(https://get.wallhere.com/photo/manga-anime-games-1950769.jpg);
+    background-size: 100vw 100vh;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+.tabs{
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+.panel-block{
+    display: flex;
+    height: 100px;
+    width: 300px;
+    align-items: right;
+
+}
+.card-group{
+    align-items: center;
+    display: flex;
+    align-items: center;
+    margin: 100px;
+    padding: 100px;
+}
+.btn{
+    position: bottom;
+    display: flex;
+}
+.btn-primary{
+    display: flex;
+    position: relative;
+
+}
+
+#cuadro1, #cuadro2{
+    border-radius: 30%;
+    background-color: rgba(204, 136, 0, 0.8);
+    border: 2px solid rgba(39,41,43,0.3);
+}
+
+.textocarru{
+    color: black
+}
+
+.card-group{
+    border-radius: 10%;
+    background-color: rgba(204, 136, 0, 0.8);
+    border: 2px solid rgba(39,41,43,0.3);
+}
+
+
+
+.linea{
+    background-color: black;
+    border: 1px solid black;
+}
+
+.carousel-inner{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 6%;
+    padding-right: 6%;
+    
+}
+
+#flechas{
+    margin-left: 82%;
+    margin-top: 1%;
+}
+
+

@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+#Se agregan css y js necesarios dentro del template que no esten en la base
+{% block head %} 
+<link rel="stylesheet" href="{% static 'css/stylesmainn.css'%}" class="css">
+{% endblock %}
+
+
+#Se agrega el titulo
+{% block titulo %} Inicio Manga store {% endblock %}
+
+
+#Se agregan los divs y contenidos, debajo de la navbar, revisar si se utiliza algo más
+{% block contenido %}
+<main class="container-md">
+
+</main>
+{% endblock %}

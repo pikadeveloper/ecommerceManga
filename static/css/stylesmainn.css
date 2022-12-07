@@ -1,0 +1,91 @@
+.Negro {color: #000016;}
+.moradoOscuro {color: #2a2c52;}
+.lilaOscuro {color: #5f599d;}
+.lila {color: #a18ef4;}
+.rosadoPastel {color: #f3caff;}
+.CelesteNeon {color: #44f6f1;}
+.Blanco {color: #fffff1}
+.MoradoNeon {color: #7232f2}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html, body{
+    background: url(../imagenes/manga-anime-games-1950769.png);
+    background-size: 100vw 100vh;
+    background-repeat: repeat;
+    background-attachment: fixed;
+}
+
+.container-md {
+    border-radius: 10%;
+}
+.tabs{
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+.panel-block{
+    display: flex;
+    height: 100px;
+    width: 300px;
+    align-items: right;
+
+}
+.card-group{
+    align-items: center;
+    display: flex;
+    align-items: center;
+    margin: 100px;
+    padding: 100px;
+}
+.btn{
+    position: bottom;
+    display: flex;
+}
+.btn-primary{
+    display: flex;
+    position: relative;
+
+}
+
+#cuadro1, #cuadro2{
+    border-radius: 30%;
+    background-color: rgba(162, 169, 176, 0.8);
+    border: 2px solid rgba(39,41,43,0.3);
+}
+
+.textocarru{
+    color: black
+}
+
+/*
+.card-group{
+    border-radius: 10%;
+    background-color: rgba(162, 169, 176, 0.8);
+    border: 2px solid rgba(39,41,43,0.3);
+}
+
+*/
+
+.linea{
+    background-color: black;
+    border: 1px solid black;
+}
+
+.carousel-inner{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 6%;
+    padding-right: 6%;
+    
+}
+
+#flechas{
+    margin-left: 82%;
+    margin-top: 1%;
+}
+
+
