@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import User, Producto
+from .models import Account, Producto
 from .forms import ProductoForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
@@ -9,7 +9,7 @@ from django.contrib.auth import login, authenticate, logout
 def registro(request):
     #usuario=Usuario.objects.all()
 
-    return render(request, 'registro.html', {'Users': User})
+    return render(request, 'registro.html', {'Users': Account})
 
 def crearProducto(request):
     formCatalogo=ProductoForm(request.POST or None, request.FILES or None)
@@ -27,10 +27,10 @@ def main(request):
 
 def login_view(request):
     if request.method == 'POST': #Se condiciona el método para obtener valores
-        email = request.POST.get('email')  #se ocupa diccionario POST, se obtienen los inputs desde el login
+        username = request.POST.get('email')  #se ocupa diccionario POST, se obtienen los inputs desde el login
         password = request.POST.get('password')
         
-        user = authenticate(request , email=email, password=password)
+        user = authenticate(request , email=username, password=password)
         print(user)
         if user:
             login(request, user)
@@ -40,9 +40,9 @@ def login_view(request):
             messages.error(request, 'Correo o Contraseña no validos')
         #if user:
             #pass
-    user=User.objects.all()
+    user=Account.objects.all()
     #
-    return render(request, 'login.html', {'User': User})
+    return render(request, 'login.html', {'User': Account})
 
 def logout_view(request):
     logout(request)
