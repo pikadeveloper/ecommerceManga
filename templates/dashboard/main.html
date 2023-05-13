@@ -1,0 +1,69 @@
+{% extends 'dashboard/baseAdmin.html' %}
+{% load static %}
+{% block head %} 
+
+{% endblock %}
+
+{% block titulo %} Menu Principal {% endblock %}
+
+{% block contenido %}
+
+<h2>Inventario Catalogo</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th scope="col"># Item</th>
+        <th scope="col">Nombre Producto</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in productos %}
+        {% if p.stock == 0 %}
+        <tr class="table-danger">
+            <td>{{p.idProducto}}</td>
+            <td>{{p.nombreProducto}}</td>
+            <td>{{p.autor}}</td>
+            <td>{{p.precioProducto}}</td>
+            <td>{{p.stock}}</td>
+            <td>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Button with data-bs-target
+                </button>
+            </td>
+            
+        </tr>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                {% include 'formCatalogo.html'  %} 
+            </div>
+          </div>
+        {% elif p.stock <= 5 %}
+        <tr class="table-warning">
+            <td>{{p.idProducto}}</td>
+            <td>{{p.nombreProducto}}</td>
+            <td>{{p.autor}}</td>
+            <td>{{p.precioProducto}}</td>
+            <td>{{p.stock}}</td>
+            <td></td>
+        </tr>
+        {% else %}
+        <tr class="table-success">
+            <td>{{p.idProducto}}</td>
+            <td>{{p.nombreProducto}}</td>
+            <td>{{p.autor}}</td>
+            <td>{{p.precioProducto}}</td>
+            <td>{{p.stock}}</td>
+            <td></td>
+        </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% include 'formCatalogo.html'  %} 
+{% endblock %}

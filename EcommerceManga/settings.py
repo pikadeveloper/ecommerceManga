@@ -21,6 +21,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'fontawesomefree',
+    'carts',
     'tienda',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -62,7 +64,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'EcommerceManga.wsgi.application'
 
 AUTH_USER_MODEL = 'tienda.Account'
-
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    'tienda.backends.CaseInsensitiveModelBackend'
+)
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 

@@ -45,91 +45,77 @@
     <div class="album py-5 ">
         <div class="container bg-light bg-opacity-50 rounded-3">
             <div id="catalogo" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 g-1">
-                {% for p in productos %}
+                {% for p in entity %}
                 <div class="col">
-                    <div class="card shadow-sm w-75 mx-auto">
+                    <div class="card shadow-sm w-75 mx-auto mt-3">
                         {% if p.imagen %} <img src="{{ p.imagen.url }}" class="card-img-top " width="200" height="200"  alt="..."> {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{p.nombreProducto | title }}</h5>
                             <p class="card-text">{{p.autor | title }}</p>
                             <p class="card-text"><small class="text-muted">${{p.precioProducto | intcomma}}</small></p>
                             <p class="card-text"><small class="text-muted">Stock: {{p.stock}}</small></p>
-                            <a class="btn btn-primary" href="">Agregar al carrito</a>
+                            <form action="{% url 'carts:add' %}" method="post">
+                              {% csrf_token %}
+                          
+                              <input type ="hidden" name="product_id" value="{{ p.idProducto }}">
+                              <div class="">
+                                  <button type="button" class="btn btn-info d-inline btnAoD btnD "  data-id="{{ p.idProducto }}">-</button>
+                                  <input type="text" value="1" class="form-control col-sm-1 d-inline inputcantidad" data-id="{{ p.idProducto }}" id="quantity" name="quantity" readonly>
+                                  <button type="button" class="btn btn-info btnAoD btnA" data-id="{{ p.idProducto }}">+</button>
+                              </div>
+                              <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                          </form>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-<!--
-                <div class="col">
-                    <div class="card shadow-sm w-75 mx-auto">
-                        <img src="{% static 'imagenes/berserk.jpg'%}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Maximum Berserk 01</h5>
-                            <p class="card-text">Kentaro Miura</p>
-                            <p class="card-text"><small class="text-muted">$17.000</small></p>
-                            <a class="btn btn-primary" href="">Agregar al
-                                carrito</a>
-                        </div>              
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="card shadow-sm w-75 mx-auto">
-                        <img src="{% static 'imagenes/fullmetal.jpg'%}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Fullmetal Alchemist 01</h5>
-                            <p class="card-text">Hiromu Arakawa</p>
-                            <p class="card-text"><small class="text-muted">$9.000</small></p>
-                            <a class="btn btn-primary" href="">Agregar al
-                                carrito</a>
-                        </div>             
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm w-75 mx-auto">
-                        <img src="{% static 'imagenes/kaisen.jpg'%}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Jujutsu Kaisen 02</h5>
-                            <p class="card-text">Gege Akutami</p>
-                            <p class="card-text"><small class="text-muted">$10.500</small></p>
-                            <a class="btn btn-primary" href="">Agregar al
-                                carrito</a>
-                        </div>          
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm w-75 mx-auto">
-                        <img src="{% static 'imagenes/chainsaw.jpg'%}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Chainsaw Man 04</h5>
-                            <p class="card-text">Tatsuki Fujimoto</p>
-                            <p class="card-text"><small class="text-muted">$9.500</small></p>
-                            <a class="btn btn-primary" href="">Agregar al
-                                carrito</a>
-                        </div>        
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm w-75 mx-auto">
-                        <img src="{% static 'imagenes/attack.jpg'%}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Attack on Titan 05</h5>
-                            <p class="card-text">Hajime Isayama</p>
-                            <p class="card-text"><small class="text-muted">$10.500</small></p>
-                            <a class="btn btn-primary" href="">Agregar al
-                                carrito</a>
-                        </div>     
-                    </div>
-                </div>
-
--->
+            </div>
+            <div>
+                {% include 'paginator.html' %}
             </div>
         </div>
     </div>
 </section>
+
+<script>
+  var catalogo = document.getElementById('catalogo')
+  const add = document.getElementById('add')
+  const remove = document.getElementById('remove')
+  const quantity = document.getElementById('quantity')
+
+  catalogo.addEventListener('click', evento=>{
+      boton = (evento.target.parentElement.querySelector(".btnAoD").dataset.id)
+      console.log(evento.target.parentElement.querySelector(".inputcantidad").dataset.id)
+      agregaroeliminar(evento)
+  })
+
+  const agregaroeliminar = evento =>{
+    if(evento.target.classList.contains("btnA")){
+      inputcantidad = evento.target.parentElement.querySelector(".inputcantidad")
+      inputcantidad.value = parseInt(inputcantidad.value) + 1
+    }
+    else if(evento.target.classList.contains("btnD")){
+      inputcantidad = evento.target.parentElement.querySelector(".inputcantidad")
+      value = parseInt(inputcantidad.value)
+      if(value != 1){
+          value = value -1 
+      }
+      inputcantidad.value = value
+    }
+  }
+
+  remove.addEventListener('click',function(){
+      value = parseInt(quantity.value)
+
+      if(value != 1){
+          value = value -1 
+      }
+      quantity.value = value
+  })
+
+
+</script>
+
 
 {% endblock %}
 

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %} 
+<link rel="stylesheet" href="{% static 'css/stylesmainn.css'%}" class="css">
+{% endblock %}
+{% block contenido %}
+{% load humanize %}
+<div class="container bg-light rounded-3 mt-3">
+    <div class="row">
+        <div class="col-3">
+            {% if producto.imagen %}
+            <img src="{{ producto.imagen.url }}" alt="Imagen del producto" width="200" height="200">
+            {% endif %}
+        </div>
+        <div class="col">
+            <div class="h1 font-weight-bold text-success mt-2" id="texto">
+                Producto agregado al carrito de compras
+            </div>
+            <div class="h1 font-weight-bold text-dark" id="texto">
+                 Manga: {{ producto.nombreProducto | title}}
+            </div>
+            <div class="h4 font-weight-bold text-dark" id="texto">
+                Autor: {{ producto.autor | title }}
+           </div>
+            <div class="h5 font-weight-bold text-dark" id="texto">
+                Stock: {{ producto.stock | intcomma}}
+            </div>
+            <div class="h5 font-weight-bold text-primary" id="texto">
+                Precio: ${{ producto.precioProducto | intcomma}}
+            </div>
+            <div>
+                <a class="btn btn-primary mt-2" href="{% url 'main' %}">
+                    <strong>Seguir comprando</strong>
+                </a>
+                <a class="btn btn-danger mt-2" href="{% url 'carts:cart' %}">
+                    <strong>Ver carrito</strong>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

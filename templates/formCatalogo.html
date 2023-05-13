@@ -2,12 +2,40 @@
     <form id="box-form" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% for campo in formCatalogo %}
-            <div class="mb-3">
-                <label for="formFile" class="form-label">{{campo.label}}</label>
-                <input type="{{ campo.field.widget.input_type }}" id="" name="{{campo.name}}" class="form-control" placeholder="{{ campo.label }}" value="{{ campo.value | default:'' }}">
-            </div>
-            <div>{{ campo.errors }}</div>   
-            {% endfor %}
+            {% if campo.label == 'Precio' or campo.label == 'Stock' %}
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">{{campo.label}}</label>
+                    <input type="{{ campo.field.widget.input_type }}" id="" 
+                    name="{{campo.name}}" 
+                    class="form-control"
+                    placeholder="{{ campo.label }}"
+                    value="{{ campo.value | default:'' }}"
+                    {% if campo.label == 'Precio' %}
+                        min="1" max="2000000" step="1"
+                    {% else %}
+                        min="0" max="1000" step="1"
+                    {% endif %}
+                    >
+                </div>
+                <div>{{ campo.errors }}</div>
+            {% else %}
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">{{campo.label}}</label>
+                    <input type="{{ campo.field.widget.input_type }}" id="" 
+                    name="{{campo.name}}" 
+                    class="form-control" 
+                    {% if campo.label == 'Nombre' or campo.label == 'Autor' %}
+                    pattern="([{% if campo.label == 'Nombre' %}0-9{% endif %}a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð',.-]+( [0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð',.-]+)*)"
+                    {% else %}
+                    placeholder="{{ campo.label }}"
+                    {% endif %}
+                    value="{{ campo.value | default:'' }}">
+
+                    
+                </div>
+                <div>{{ campo.errors }}</div>
+            {% endif %}
+        {% endfor %}
             <button type="submit" class="btn btn-primary">Enviar</button>
     </form>
 </div>
