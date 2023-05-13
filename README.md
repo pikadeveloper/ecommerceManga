@@ -1,7 +1,7 @@
-### Configuración para Iniciar el proyecto
-
+## Configuración para Iniciar el proyecto
 Se debe tener instalado mysql y tener configurado una base de datos con el nombre "EcommerceManga"
-## Pasos a seguir
+
+### Pasos a seguir
 
 - Acceder Mysql SHELL
 ``` mysql -u root -p ```
