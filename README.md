@@ -3,21 +3,18 @@ Se debe tener instalado mysql y tener configurado una base de datos con el nombr
 
 ### Pasos a seguir
 
-- Acceder Mysql SHELL
+- Acceder MySQL SHELL (usuario root liberado en condiciones de desarrollo)
 ``` mysql -u root -p ```
 
-- Crear una base de datos
-```create database name;```
+- Crear la base de datos 
+```create database EcommerceManga;```
 
-- Eliminar una base de datos
-```drop database name;```
-
-- Dentro del directorio del proyecto ejecutar el comando
+- Dentro del directorio, ejecutar el siguiente comando para instalar dependencias necesarias para la ejecución del proyhecto
 ```pip install -r requirements.txt```
 
 Comprobar si existen carpetas de pycache y migrations, eliminarlas para no tener conflictos entre archivos
 
-- Ejecutar comandos
+- Ejecutar los siguientes comandos de django para crear los modelos de datos e importarlos a MySQL
 ```
 python manage.py makemigrations tienda
 
@@ -29,3 +26,7 @@ python manage.py migrate
 ```python manage.py createsuperuser```
 
 seguir pasos de la consola...
+
+## Anexo:
+- Eliminar una base de datos
+```drop database name;```
