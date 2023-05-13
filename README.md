@@ -9,7 +9,7 @@ Se debe tener instalado mysql y tener configurado una base de datos con el nombr
 - Crear la base de datos 
 ```create database EcommerceManga;```
 
-- Dentro del directorio, ejecutar el siguiente comando para instalar dependencias necesarias para la ejecución del proyhecto
+- Dentro del directorio, ejecutar el siguiente comando para instalar dependencias necesarias para la ejecución del proyecto
 ```pip install -r requirements.txt```
 
 Comprobar si existen carpetas de pycache y migrations, eliminarlas para no tener conflictos entre archivos
